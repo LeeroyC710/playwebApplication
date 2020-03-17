@@ -1,9 +1,66 @@
+@()
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome My Event Page</title>
+        <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                th, td {
+                    padding: 8px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                tr:hover {background-color:#f5f5f5;}
+        </style>
+    </head>
+
+    <body>
+
+        <h1> COMING UP EVENTS </h1>
+
+        <table>
+            <thead>
+
+                <tr>
+                    <th> Event Name </th>
+                    <th>Event Date </th>
+                    <th> Event Place </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Place + Faces </td>
+                    <td> 25 April 2020 8pm - 11pm </td>
+                    <td> Shoreditch Boxpark </td>
+                </tr>
+                <tr>
+                    <td> Corona TakeOver</td>
+                    <td> 30 April 2020 12pm - 12am </td>
+                    <td> Hyde Park </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Summer Vibes</td>
+                    <td>18 April 2020 12pm - 11pm </td>
+                    <td> Kingston Pryzm Club</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <p id="demo"></p>
+            <script>
+                    var d = new Date();
+                    document.getElementById("demo").innerHTML = d;
+            </script>
 
 
-@(message: String)
-
-@main("Welcome to Play") {
-
-    @message
-
-}
+    </body>
+</html>

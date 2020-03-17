@@ -16,7 +16,7 @@ class LoginController @Inject()(cc: ControllerComponents) extends AbstractContro
       BadRequest(views.html.login(formWithErrors))
     }, { loginDetails =>
       if (LoginDetails.checkIfUserIsValid(loginDetails))
-        Redirect(routes.HomeController.index()).withSession(request.session + ("username" -> loginDetails.username))
+        Ok(views.html.index())
       else
         BadRequest("Incorrect username or password")
     })
