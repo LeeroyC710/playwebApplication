@@ -6,7 +6,7 @@ import reactivemongo.play.json.collection.JSONCollection
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.{Feed, EventDetails, Event}
+import models.{Feed, EventDetails, Event, Time, Place}
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
 import reactivemongo.api.Cursor
@@ -26,8 +26,8 @@ class AppUsingMongo @Inject()(
   def collection: Future[JSONCollection] = database.map(_.collection[JSONCollection]("persons"))
 
   def create: Action[AnyContent] = Action.async {
-    val event = event("Corona Takeover", "22 April 2020", "Newbury Park", List(Feed("Slashdot news", "http://slashdot.org/slashdot.rdf")))
-    val futureResult = collection.flatMap(_.insert.one(song))
+    val event = Event("Corona Takeover", Time("22 April 2020 8PM", Place("Newbury Park", List(Feed("Slashdot news", "http://slashdot.org/slashdot.rdf"))))
+    val futureResult = collection.flatMap(_.insert.one(event))
     futureResult.map(_ => Ok("User inserted"))
   }
 
@@ -39,17 +39,17 @@ class AppUsingMongo @Inject()(
   }
 
   def findByName(event: String): Action[AnyContent] = Action.async {
-    val cursor: Future[Cursor[Song]] = collection.map {
+    val cursor: Future[Cursor[Event]] = collection.map {
       _.find(Json.obj("Corona Takeover" -> event)).
         sort(Json.obj("created" -> -1)).
-        cursor[Song]()
+        cursor[Event]()
     }
 
-    val futureUsersList: Future[List[Song]] =
+    val futureUsersList: Future[List[Event]] =
       cursor.flatMap(
         _.collect[List](
           -1,
-          Cursor.FailOnError[List[Song]]()
+          Cursor.FailOnError[List[Event]]()
         )
       )
 

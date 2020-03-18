@@ -9,8 +9,8 @@ case class Event( event :String, Time: String, place: String ){
 object Event {
   val postEvent = Form(
     mapping(
-      "Event" -> nonEmptyText
-  "Time" -> nonEmptyText
+      "Event" -> nonEmptyText,
+    "Time" -> nonEmptyText,
   "Place" -> nonEmptyText
   )(Event.apply)(Event.unapply)
   )
