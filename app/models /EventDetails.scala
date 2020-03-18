@@ -1,15 +1,24 @@
-package models
+import play.api.libs.json.OFormat
 
-import play.api.data.Form
-import play.api.data.Forms._
+package models {
 
-case class EventDetails( post :String )
+  case class EventDetails(
+                   Event: String,
+                   Time: String,
+                   Place : String,
+                   feeds: List[Feed])
 
-object EventDetails
-{
-  val eventForm :Form[EventDetails] = Form(
-    mapping(
-      "Corana Takeover" -> nonEmptyText
-    )(EventDetails.apply)(EventDetails.unapply)
-  )
+  case class Feed(
+                   name: String,
+                   url: String)
+
+  object JsonFormats {
+
+    import play.api.libs.json.Json
+
+    implicit val feedFormat: OFormat[Feed] = Json.format[Feed]
+    implicit val songFormat: OFormat[Song] = Json.format[Song]
+
+  }
+
 }

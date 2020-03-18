@@ -1,4 +1,4 @@
-name := "Recipies_New_Play_Version"
+name := "recipies_New_Play_Version"
  
 version := "1.0" 
       

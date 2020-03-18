@@ -13,7 +13,7 @@ class EventController @Inject()(cc: ControllerComponents, authAction: Authentica
     Ok(views.html.event(EventDetails.postForm))
   }
 
-  def eventSubmit = Action[AnyContent] = authAction { implicit request: Request[AnyContent] =>
+  def eventSubmit = Action[AnyContent] ; authAction { implicit request: Request[AnyContent] =>
     EventDetails.eventForm.bindFromRequest.fold({ formWithErrors =>
       BadRequest(views.html.event(formWithErrors))
     }, { EventDetails =>
@@ -22,7 +22,7 @@ class EventController @Inject()(cc: ControllerComponents, authAction: Authentica
   }
   def viewAllEvents() = authAction { implicit request: Request[AnyContent] =>
     Redirect(routes.ApplicationUsingJsonReadersWriters.getAllEvents())
-  })
+  };
 }
     //    mongoServices.validUser(loginDetails).map (result => {
 //      if (result) {

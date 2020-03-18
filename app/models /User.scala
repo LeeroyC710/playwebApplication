@@ -6,7 +6,6 @@ case class User(
   lastName: String,
 //  feeds: Seq[Feed]
 )
-
 case class Feed(
                  name: String,
                  url: String
