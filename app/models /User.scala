@@ -4,7 +4,7 @@ case class User(
   age: Option[Int],
   firstName: String,
   lastName: String,
-  feeds: Seq[Feed]
+//  feeds: Seq[Feed]
 )
 
 case class Feed(
@@ -16,6 +16,6 @@ object JsonFormats {
   import play.api.libs.json.Json
 
   // Generates Writes and Reads for Feed and User thanks to Json Macros
-  implicit val feedFormat = Json.format[Feed]
+//  implicit val feedFormat = Json.format[Feed]
   implicit val userFormat = Json.format[User]
 }

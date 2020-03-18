@@ -35,5 +35,5 @@ class EventController @Inject()(cc: ControllerComponents, authAction: Authentica
 //        Redirect(routes.LoginController.login())
 //      }
 //    })
-  }
-}
+//  }
+//}
