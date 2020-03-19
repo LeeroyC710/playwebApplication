@@ -11,12 +11,12 @@ import models.JsonFormats._
 import play.api.libs.json.OWrites
 import play.api.libs.json.{JsValue, Json}
 import reactivemongo.api.Cursor
-
+import reactivemongo.play.json.JsObjectDocumentWriter
 import play.modules.reactivemongo.{
   MongoController, ReactiveMongoComponents, ReactiveMongoApi
 }
 
-class AppUsingMongo @Inject()(
+class ApplicationUsingJsonReadersWriters @Inject()(
                                components: ControllerComponents,
                                val reactiveMongoApi: ReactiveMongoApi
                              ) extends AbstractController(components)
@@ -26,10 +26,10 @@ class AppUsingMongo @Inject()(
 
   def collection: Future[JSONCollection] = database.map(_.collection[JSONCollection]("persons"))
 
-  def Event(event: String, value: Any): Nothing = ???
+//  def Event(event: String, value: Any): Nothing = ???
 
   def create: Action[AnyContent] = Action.async {
-    val event = Event("Corona Takeover", List(Feed("Slashdot news", "http://slashdot.org/slashdot.rdf")))
+    val event = Event("", "", "")
     val futureResult = collection.flatMap(_.insert.one(event))
     futureResult.map(_ => Ok("User inserted"))
   }

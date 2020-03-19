@@ -16,8 +16,8 @@ package models {
 
     import play.api.libs.json.Json
 
-    implicit val feedFormat: OFormat[Feed] = Json.format[Feed]
     implicit val eventFormat: OFormat[Event] = Json.format[Event]
+    implicit val feedFormat: OFormat[Feed] = Json.format[Feed]
 
   }
 
