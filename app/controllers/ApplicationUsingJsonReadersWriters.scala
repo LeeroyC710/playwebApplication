@@ -6,8 +6,9 @@ import reactivemongo.play.json.collection.JSONCollection
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.{Feed, EventDetails, Event, Time, Place}
+import models.{Feed, EventDetails, Event}
 import models.JsonFormats._
+import play.api.libs.json.OWrites
 import play.api.libs.json.{JsValue, Json}
 import reactivemongo.api.Cursor
 
@@ -25,8 +26,10 @@ class AppUsingMongo @Inject()(
 
   def collection: Future[JSONCollection] = database.map(_.collection[JSONCollection]("persons"))
 
+  def Event(event: String, value: Any): Nothing = ???
+
   def create: Action[AnyContent] = Action.async {
-    val event = Event("Corona Takeover", Time("22 April 2020 8PM", Place("Newbury Park", List(Feed("Slashdot news", "http://slashdot.org/slashdot.rdf"))))
+    val event = Event("Corona Takeover", List(Feed("Slashdot news", "http://slashdot.org/slashdot.rdf")))
     val futureResult = collection.flatMap(_.insert.one(event))
     futureResult.map(_ => Ok("User inserted"))
   }

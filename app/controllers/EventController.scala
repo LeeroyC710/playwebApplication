@@ -10,7 +10,7 @@ class EventController @Inject()(cc: ControllerComponents, authAction: Authentica
 {
 
   def event() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.event(EventDetails.postForm))
+    Ok(views.html.index(EventDetails.postForm))
   }
 
   def eventSubmit = Action[AnyContent] ; authAction { implicit request: Request[AnyContent] =>
