@@ -6,7 +6,7 @@ import reactivemongo.play.json.collection.JSONCollection
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.{Feed, EventDetails, Event}
+import models.{Feed, eventDetails, Event}
 import models.JsonFormats._
 import play.api.libs.json.OWrites
 import play.api.libs.json.{JsValue, Json}

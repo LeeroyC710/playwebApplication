@@ -1,10 +1,12 @@
 package controllers
 
 
+import java.awt.Desktop.Action
+
 import authentication.AuthenticationAction
 import javax.inject.{Inject, Singleton}
-import models.{EditForm, EventDetails, LoginDetails}
-import play.api.mvc.{AbstractController, Action, AnyContent, Call, ControllerComponents, Request}
+import jdk.nashorn.internal.ir.RuntimeNode.Request
+import models.{EditForm, eventDetails, LoginDetails}
 
 @Singleton
 class EventController @Inject()(cc: ControllerComponents, authAction: AuthenticationAction, val app: ApplicationUsingJsonReadersWriters) extends AbstractController(cc) with play.api.i18n.I18nSupport
@@ -15,9 +17,9 @@ class EventController @Inject()(cc: ControllerComponents, authAction: Authentica
   }
 
   def eventSubmit(): Action[AnyContent] = authAction { implicit request :Request[AnyContent] =>
-    EventDetails.Event.bindFromRequest.fold({ formWithErrors =>
+    EventDetails.EventController.bindFromRequest.fold({ formWithErrors =>
       BadRequest(views.html.event(formWithErrors))
-    }, { eventDetails =>
+    }, { EventDetails =>
       Redirect( routes.ApplicationUsingJsonReadersWriters.create(eventDetails.event) )
     })
   }
@@ -30,7 +32,7 @@ class EventController @Inject()(cc: ControllerComponents, authAction: Authentica
   def editEvent(id :String) :Action[AnyContent] = authAction { implicit request :Request[AnyContent] =>
     EditForm.editForm.bindFromRequest.fold({ formWithErrors =>
       BadRequest(views.html.editEvent(formWithErrors, id))
-    }, editForm =>
+    }, EditForm =>
       Redirect( routes.ApplicationUsingJsonReadersWriters.editEvent(id, editForm.newComment))
     )}
 

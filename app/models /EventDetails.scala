@@ -2,7 +2,7 @@ import play.api.libs.json.OFormat
 
 package models {
 
-  case class EventDetails(
+  case class eventDetails(
                    Event: String,
                    Time: String,
                    Place : String,
