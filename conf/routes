@@ -2,6 +2,14 @@ GET        /                    controllers.LoginController.login()
 GET        /login               controllers.LoginController.login
 POST       /login               controllers.LoginController.loginSubmit
 
-GET         /assets/*file        controllers.Assets.at(path="/public", file)
+GET         /showSongForm                  controllers.EventController.showEventForm()
+POST        /submitSong                    controllers.EventController.submitEvent()
+
+GET         /createperson                controllers.AppUsingMongo.create
+
+POST        /createFromJson              controllers.AppUsingMongo.createFromJson
+
+GET         /findByName/:lastName        controllers.AppUsingMongo.findByName(lastName: String)
+GET         /assets/*file                controllers.Assets.at(path="/public", file)
 
 

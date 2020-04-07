@@ -4,6 +4,7 @@ import javax.inject._
 import authentication.AuthenticationAction
 import play.api.mvc._
 
+
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents, authAction: AuthenticationAction) extends AbstractController(cc) {
 

@@ -1,23 +1,17 @@
-//package models
-//
-//import play.api.data.Form
-//import play.api.data.Forms.mapping
-//
-//case class Event(name: String, price: Int)
-//override def toString() = s"The name of the event is: $name and the price is: $price"
-//}
-//
-//object Event {
-//  val createCDForm = Form(
-//    mapping(
-//      "name" -> nonEmptyText,
-//      "price" -> number
-//    )(Event.apply)(Event.unapply)
-//  )
-//  val cds = ArrayBuffer(
-//    Event("CD 1", 123),
-//    Event("CD 2", 456),
-//    Event("CD 3", 789)
-//  )
-//
-//}
+package models
+
+import play.api.data.Form
+import play.api.data.Forms._
+
+case class Event(event :String, time: String, place: String ){
+  override def toString() = s"Name of event is: $event and the Event is: $time and the place is: $place"
+}
+object Event {
+  val postEvent = Form(
+    mapping(
+      "Event" -> nonEmptyText,
+    "Time" -> nonEmptyText,
+  "Place" -> nonEmptyText
+  )(Event.apply)(Event.unapply)
+  )
+}
